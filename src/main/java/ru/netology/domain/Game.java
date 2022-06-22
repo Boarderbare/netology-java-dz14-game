@@ -1,28 +1,23 @@
 package ru.netology.domain;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Game {
 
-    private List<Player> players = new ArrayList<>();
+    private Map<String,Integer> map = new HashMap<>();
 
-//    public boolean register(Player player) {
-//        return players.add(player);
-//    }
-    public boolean registerAll(Collection<? extends Player> players){
-        return this.players.addAll(players);
-    }
-    public List<Player> getAll(){
-        return players;
+    public void register(String name, int strenght) {
+        map.put(name, strenght);
     }
 
-    public Player findByName(String name) {
-        for (Player player : players) {
-            if (name == player.getName()) {
-                return player;
+    public Map<String, Integer> getAll(){
+        return map;
+    }
+
+    public int findByName(String name) {
+        for (String key : map.keySet()) {
+            if (key.equals(name)){
+                return map.get(key);
             }
         }
         throw new NotRegisteredException("This player " + name + "is not registered");
@@ -30,10 +25,10 @@ public class Game {
 
     public int round(String playerName1, String playerName2) {
 
-        if (findByName(playerName1).getStrength() > findByName(playerName2).getStrength()) {
+        if (findByName(playerName1) > findByName(playerName2)) {
             return 1;
         }
-        if (findByName(playerName1).getStrength() < findByName(playerName2).getStrength()) {
+        if (findByName(playerName1) < findByName(playerName2)) {
             return 2;
         }
         return 0;
