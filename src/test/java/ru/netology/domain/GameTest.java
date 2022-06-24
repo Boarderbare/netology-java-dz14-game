@@ -9,18 +9,18 @@ import static java.util.List.of;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
-    Map<String,Integer> map = new HashMap<>();
+    Map<String, Integer> map = new HashMap<>();
     public Game game = new Game();
 
     @BeforeEach
     public void setup() {
-        game.register( "Ilya", 3);
-        game.register( "Petya", 4);
-        game.register( "Vanya", 1);
-        game.register( "Kolya", 6);
-        game.register( "Vasya", 4);
-    }
 
+        game.register("Ilya", new Player(1, "Ilya", 3));
+        game.register("Petya", new Player(2, "Petya", 4));
+        game.register("Vanya", new Player(3, "Vanya", 1));
+        game.register("Kolya", new Player(4, "Kolya", 6));
+        game.register("Vasya", new Player(5, "Vasya", 4));
+    }
 
     @Test
     public void shouldWinSecond() {
@@ -50,5 +50,4 @@ public class GameTest {
             game.round("Vasya", "Zhenya");
         });
     }
-
 }

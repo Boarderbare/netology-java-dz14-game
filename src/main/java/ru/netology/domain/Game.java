@@ -4,13 +4,13 @@ import java.util.*;
 
 public class Game {
 
-    private Map<String, Integer> map = new HashMap<>();
+    private Map<String, Player> map = new HashMap<>();
 
-    public void register(String name, int strenght) {
-        map.put(name, strenght);
+    public void register(String name, Player player) {
+        map.put(name, player);
     }
 
-    public Map<String, Integer> getAll() {
+    public Map<String, Player> getAll() {
         return map;
     }
 
@@ -22,10 +22,10 @@ public class Game {
             throw new NotRegisteredException("This player " + playerName2 + "is not registered");
         }
 
-        if (map.get(playerName1) > map.get(playerName2)) {
+        if (map.get(playerName1).getStrength() > map.get(playerName2).getStrength()) {
             return 1;
         }
-        if (map.get(playerName1) < map.get(playerName2)) {
+        if (map.get(playerName1).getStrength() < map.get(playerName2).getStrength()) {
             return 2;
         }
         return 0;
